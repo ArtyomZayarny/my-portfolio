@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import React, { FormEvent, useState } from "react";
 import GithubIcon from "../public/github-icon.svg";
 import LinkedinIcon from "../public/linkedin-icon.svg";
@@ -38,11 +38,14 @@ const Email = () => {
       body: JSONdata,
     };
 
+    try {
     const response = await fetch(endpoint, options);
-
-    if (response.status === 200) {
-      console.log("Message sent.");
-      setEmailSubmitted(true);
+      if (response.status === 200) {
+        console.log("Message sent.");
+        setEmailSubmitted(true);
+      }
+    } catch (error) {
+      console.error("Error sending email: ", error);
     }
   };
 
@@ -128,7 +131,7 @@ const Email = () => {
             </div>
             <button
               type="submit"
-              className="bg-green-500 hover:bg-green-600 text-white font-medium py-2.5 px-5 rounded-lg w-full"
+              className="bg-green-500 hover:bg-green-600 text-white font-medium py-2.5 px-5 rounded-lg w-full cursor-pointer"
             >
               Send Message
             </button>
