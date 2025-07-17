@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { FormEvent, useState } from "react";
 import GithubIcon from "../public/github-icon.svg";
 import LinkedinIcon from "../public/linkedin-icon.svg";
@@ -39,7 +39,7 @@ const Email = () => {
     };
 
     try {
-    const response = await fetch(endpoint, options);
+      const response = await fetch(endpoint, options);
       if (response.status === 200) {
         console.log("Message sent.");
         setEmailSubmitted(true);
@@ -62,7 +62,7 @@ const Email = () => {
         <p className="text-[#ADB7BE] mb-4 max-w-md">
           {" "}
           I&apos;m always looking for new opportunities. Whether you have a
-          question, I&apos;ll try to get back to you asap!
+          question, I&apos;ll try to get back to you A.S.A.P!
         </p>
         <div className="socials flex flex-row gap-2">
           <Link target="_blank" href="https://github.com/ArtyomZayarny">

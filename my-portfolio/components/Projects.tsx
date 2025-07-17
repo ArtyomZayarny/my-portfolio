@@ -47,6 +47,14 @@ const projectsData: IProject[] = [
     gitUrl: "https://github.com/ArtyomZayarny/article-manager",
     previewUrl: "/images/projects/article-manager.png",
   },
+  {
+    id: 5,
+    title: "Landing page",
+    image: "/images/projects/landing-page.png",
+    tag: [ProjectTagsEnum.All, ProjectTagsEnum.Web],
+    gitUrl: "https://github.com/ArtyomZayarny/lp-mnmlst",
+    previewUrl: "https://lp-mnmlst.vercel.app/",
+  },
 ];
 
 const Projects = () => {

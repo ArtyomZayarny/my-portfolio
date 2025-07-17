@@ -1,6 +1,7 @@
 import { CodeBracketIcon, EyeIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { IProject } from "../types";
+import useIsMobile from "@/hooks/useIsMobile";
 
 interface ProjectCardProps extends IProject {
   imgUrl: string;
@@ -13,8 +14,12 @@ const ProjectCard = ({
   gitUrl,
   previewUrl,
 }: Partial<ProjectCardProps>) => {
+  const { isMobile, mounted } = useIsMobile();
+  if (!mounted) {
+    return null;
+  }
   return (
-    <div>
+    <a href={isMobile ? previewUrl : "#"} target="_blank">
       <div
         className="h-52 md:h-72 rounded-t-xl relative group"
         style={{ background: `url(${imgUrl})`, backgroundSize: "cover" }}
@@ -40,7 +45,7 @@ const ProjectCard = ({
         <h5 className="text-xl font-semibold mb-2">{title}</h5>
         <p className="text-[#ADB7BE]">{description}</p>
       </div>
-    </div>
+    </a>
   );
 };
 
