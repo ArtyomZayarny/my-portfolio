@@ -55,6 +55,22 @@ const projectsData: IProject[] = [
     gitUrl: "https://github.com/ArtyomZayarny/lp-mnmlst",
     previewUrl: "https://lp-mnmlst.vercel.app/",
   },
+  {
+    id: 6,
+    title: "Dental scaner",
+    image: "/images/projects/dental-scaner.png",
+    tag: [ProjectTagsEnum.All, ProjectTagsEnum.Web],
+    gitUrl: "https://github.com/ArtyomZayarny/dentalscaner",
+    previewUrl: "https://dentalscaner-fe.vercel.app/",
+  },
+  {
+    id: 7,
+    title: "Neuro focus",
+    image: "/images/projects/neuro-focus.png",
+    tag: [ProjectTagsEnum.All, ProjectTagsEnum.Web],
+    gitUrl: "https://github.com/ArtyomZayarny/neuro-focus",
+    previewUrl: "https://neuro-focus-murex.vercel.app/",
+  },
 ];
 
 const Projects = () => {
