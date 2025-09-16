@@ -20,7 +20,7 @@ const projectsData: IProject[] = [
     image: "/images/projects/trello-clone.png",
     tag: [ProjectTagsEnum.All, ProjectTagsEnum.Web],
     gitUrl: "https://github.com/ArtyomZayarny/TaskManager",
-    previewUrl: "/images/projects/trello-clone.png",
+    previewUrl: "https://trello-clone-tau-sage.vercel.app/",
   },
 
   {
