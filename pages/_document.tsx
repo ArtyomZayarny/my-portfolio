@@ -3,8 +3,8 @@ import { Html, Head, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html lang="en" className="scroll-smooth">
-      <title>Home | TimDevelopment</title>
       <Head>
+        <title>Home | TimDevelopment</title>
         <meta name="description" content="Welcome to Tim's portfolio site." />
         <link
           rel="icon"

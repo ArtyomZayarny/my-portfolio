@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import React, { useContext } from "react";
 import NavLink from "./NavLink";

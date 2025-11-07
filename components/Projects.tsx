@@ -1,4 +1,3 @@
-"use client";
 import React, { useState, useRef } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectTag from "./ProjectTag";
@@ -6,6 +5,30 @@ import { motion, useInView } from "framer-motion";
 import { IProject, ProjectTagsEnum } from "../types";
 
 const projectsData: IProject[] = [
+  {
+    id: 8,
+    title: "AI Resume builder",
+    image: "/images/projects/ai-resume-builder.png",
+    tag: [ProjectTagsEnum.All, ProjectTagsEnum.Web],
+    gitUrl: "https://github.com/ArtyomZayarny/ai-builder-app",
+    previewUrl: "https://ai-builder-app-kappa.vercel.app/",
+  },
+  {
+    id: 6,
+    title: "Dental care",
+    image: "/images/projects/dental-care.png",
+    tag: [ProjectTagsEnum.All, ProjectTagsEnum.Web],
+    gitUrl: "https://github.com/ArtyomZayarny/dentalscaner",
+    previewUrl: "https://dentalscaner-fe.vercel.app/",
+  },
+  {
+    id: 7,
+    title: "Neuro focus",
+    image: "/images/projects/neuro-focus.png",
+    tag: [ProjectTagsEnum.All, ProjectTagsEnum.Web],
+    gitUrl: "https://github.com/ArtyomZayarny/neuro-focus",
+    previewUrl: "https://neuro-focus-murex.vercel.app/",
+  },
   {
     id: 0,
     title: "Tickets booking system",
@@ -21,15 +44,6 @@ const projectsData: IProject[] = [
     tag: [ProjectTagsEnum.All, ProjectTagsEnum.Web],
     gitUrl: "https://github.com/ArtyomZayarny/TaskManager",
     previewUrl: "https://trello-clone-tau-sage.vercel.app/",
-  },
-
-  {
-    id: 2,
-    title: "Booking clone (front-end)",
-    image: "/images/projects/booking-fe.png",
-    tag: [ProjectTagsEnum.All, ProjectTagsEnum.Web],
-    gitUrl: "https://github.com/ArtyomZayarny/booking-fe",
-    previewUrl: "/images/projects/booking-fe.png",
   },
   {
     id: 3,
@@ -54,22 +68,6 @@ const projectsData: IProject[] = [
     tag: [ProjectTagsEnum.All, ProjectTagsEnum.Web],
     gitUrl: "https://github.com/ArtyomZayarny/lp-mnmlst",
     previewUrl: "https://lp-mnmlst.vercel.app/",
-  },
-  {
-    id: 6,
-    title: "Dental scaner",
-    image: "/images/projects/dental-scaner.png",
-    tag: [ProjectTagsEnum.All, ProjectTagsEnum.Web],
-    gitUrl: "https://github.com/ArtyomZayarny/dentalscaner",
-    previewUrl: "https://dentalscaner-fe.vercel.app/",
-  },
-  {
-    id: 7,
-    title: "Neuro focus",
-    image: "/images/projects/neuro-focus.png",
-    tag: [ProjectTagsEnum.All, ProjectTagsEnum.Web],
-    gitUrl: "https://github.com/ArtyomZayarny/neuro-focus",
-    previewUrl: "https://neuro-focus-murex.vercel.app/",
   },
 ];
 

@@ -1,4 +1,3 @@
-"use client";
 import { useTransition, useState } from "react";
 import Image from "next/image";
 import TabButton from "./TabButton";
