@@ -16,7 +16,7 @@
     ]
   },
   "dependencies": {
-    "next": "15.3.5",
+    "next": "^16.1.6",
     "nodemailer": "^7.0.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -31,7 +31,7 @@
     "@types/react": "19.2.2",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.3.5",
+    "eslint-config-next": "^16.1.6",
     "framer-motion": "^12.23.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
