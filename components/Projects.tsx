@@ -72,6 +72,7 @@ const fallbackProjects: IProject[] = [
 ];
 
 const Projects = () => {
+  // State for selected tag and projects data
   const [tag, setTag] = useState(ProjectTagsEnum.All);
   const [projectsData, setProjectsData] = useState<IProject[]>(fallbackProjects);
   const ref = useRef(null);
@@ -85,7 +86,7 @@ const Projects = () => {
 
         if (data.data && data.data.length > 0) {
           const transformedProjects: IProject[] = data.data.map(
-            (project: any) => {
+            (project: { id: number; title: string; tag: string; description?: string; gitUrl: string; previewUrl: string }) => {
               const tags: ProjectTagsEnum[] = [ProjectTagsEnum.All];
               if (project.tag === "Web") {
                 tags.push(ProjectTagsEnum.Web);
