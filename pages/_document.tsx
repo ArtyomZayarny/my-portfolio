@@ -4,7 +4,6 @@ export default function Document() {
   return (
     <Html lang="en" className="scroll-smooth">
       <Head>
-        <title>Home | TimDevelopment</title>
         <meta name="description" content="Welcome to Tim's portfolio site." />
         <link
           rel="icon"
