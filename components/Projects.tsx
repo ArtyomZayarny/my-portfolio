@@ -1,10 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectTag from "./ProjectTag";
 import { motion, useInView } from "framer-motion";
 import { IProject, ProjectTagsEnum } from "../types";
 
-const projectsData: IProject[] = [
+const fallbackProjects: IProject[] = [
   {
     id: 8,
     title: "AI Resume builder",
@@ -73,9 +73,59 @@ const projectsData: IProject[] = [
 
 const Projects = () => {
   const [tag, setTag] = useState(ProjectTagsEnum.All);
+  const [projectsData, setProjectsData] = useState<IProject[]>(fallbackProjects);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch("http://localhost:1337/api/projects");
+        const data = await response.json();
+
+        if (data.data && data.data.length > 0) {
+          const transformedProjects: IProject[] = data.data.map(
+            (project: any) => {
+              const tags: ProjectTagsEnum[] = [ProjectTagsEnum.All];
+              if (project.tag === "Web") {
+                tags.push(ProjectTagsEnum.Web);
+              } else if (project.tag === "Mobile") {
+                tags.push(ProjectTagsEnum.Mobile);
+              }
+
+              const imageMap: { [key: string]: string } = {
+                "AI Resume builder": "/images/projects/ai-resume-builder.png",
+                "Dental care": "/images/projects/dental-care.png",
+                "Neuro focus": "/images/projects/neuro-focus.png",
+                "Tickets booking system": "/images/projects/tickets-booking.png",
+                "Trello clone": "/images/projects/trello-clone.png",
+                "Bike booking admin panel": "/images/projects/bike-admin.png",
+                "Article management system": "/images/projects/article-manager.png",
+                "Landing page": "/images/projects/landing-page.png",
+              };
+
+              return {
+                id: project.id,
+                title: project.title,
+                image: imageMap[project.title] || "/images/projects/placeholder.png",
+                description: project.description || "",
+                tag: tags,
+                gitUrl: project.gitUrl,
+                previewUrl: project.previewUrl,
+              };
+            }
+          );
+          setProjectsData(transformedProjects);
+        }
+      } catch (err) {
+        console.error("Failed to fetch from Strapi, using fallback data:", err);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  
   const handleTagChange = (newTag: ProjectTagsEnum) => {
     setTag(newTag);
   };
@@ -111,26 +161,31 @@ const Projects = () => {
           isSelected={tag === ProjectTagsEnum.Mobile}
         />
       </div>
-      <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
-        {filteredProjects.map((project: IProject, index) => (
-          <motion.li
-            key={index}
-            variants={cardVariants}
-            initial="initial"
-            animate={isInView ? "animate" : "initial"}
-            transition={{ duration: 0.3, delay: index * 0.4 }}
-          >
-            <ProjectCard
+      {filteredProjects.length > 0 ? (
+        <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
+          {filteredProjects.map((project: IProject, index) => (
+            <motion.li
               key={project.id}
-              title={project.title}
-              description={project.description}
-              imgUrl={project.image}
-              gitUrl={project.gitUrl}
-              previewUrl={project.previewUrl}
-            />
-          </motion.li>
-        ))}
-      </ul>
+              variants={cardVariants}
+              initial="initial"
+              animate={isInView ? "animate" : "initial"}
+              transition={{ duration: 0.3, delay: index * 0.4 }}
+            >
+              <ProjectCard
+                title={project.title}
+                description={project.description}
+                imgUrl={project.image}
+                gitUrl={project.gitUrl}
+                previewUrl={project.previewUrl}
+              />
+            </motion.li>
+          ))}
+        </ul>
+      ) : (
+        <div className="text-center text-white">
+          No projects match the selected filter
+        </div>
+      )}
     </section>
   );
 };

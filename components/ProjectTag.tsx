@@ -1,4 +1,12 @@
-const ProjectTag = ({ name, onClick, isSelected }) => {
+import { ProjectTagsEnum } from "../types";
+
+interface ProjectTagProps {
+  name: ProjectTagsEnum;
+  onClick: (name: ProjectTagsEnum) => void;
+  isSelected: boolean;
+}
+
+const ProjectTag = ({ name, onClick, isSelected }: ProjectTagProps) => {
   const buttonStyles = isSelected
     ? "text-white border-green-500"
     : "text-[#ADB7BE] border-slate-600 hover:border-white";
