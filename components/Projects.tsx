@@ -81,12 +81,21 @@ const Projects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch("http://localhost:1337/api/projects");
+        const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "https://portfolio-strapi-b8le.onrender.com";
+        const response = await fetch(`${strapiUrl}/api/projects?populate=image`);
         const data = await response.json();
 
         if (data.data && data.data.length > 0) {
           const transformedProjects: IProject[] = data.data.map(
-            (project: { id: number; title: string; tag: string; description?: string; gitUrl: string; previewUrl: string }) => {
+            (project: {
+              id: number;
+              title: string;
+              tag: string;
+              description?: string;
+              gitUrl: string;
+              previewUrl: string;
+              image?: { url?: string };
+            }) => {
               const tags: ProjectTagsEnum[] = [ProjectTagsEnum.All];
               if (project.tag === "Web") {
                 tags.push(ProjectTagsEnum.Web);
@@ -105,10 +114,14 @@ const Projects = () => {
                 "Landing page": "/images/projects/landing-page.png",
               };
 
+              const imageUrl = project.image?.url
+                ? (project.image.url.startsWith("http") ? project.image.url : `${strapiUrl}${project.image.url}`)
+                : imageMap[project.title] || "/images/projects/placeholder.png";
+
               return {
                 id: project.id,
                 title: project.title,
-                image: imageMap[project.title] || "/images/projects/placeholder.png",
+                image: imageUrl,
                 description: project.description || "",
                 tag: tags,
                 gitUrl: project.gitUrl,
